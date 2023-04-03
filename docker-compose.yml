@@ -46,6 +46,20 @@ services:
       - "5044:5044"
     depends_on:
       - elasticsearch
+  
+  metricbeat
+    container_name: metricbeat
+    image: docker.elastic.co/beats/metricbeat:8.7.0
+    restart: unless-stopped
+    command: -e
+    environment:
+      - "WAIT_FOR_HOSTS=elasticsearch:9200 kibana:5601"
+      - "HOST_ELASTICSEARCH=elasticsearch:9200"
+      - "HOST_KIBANA=kibana:5601"
+    depends_on:
+      - elasticsearch
+
+
 volumes:
   elasticsearch-data:
     driver: local
