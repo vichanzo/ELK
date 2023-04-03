@@ -47,7 +47,7 @@ services:
     depends_on:
       - elasticsearch
   
-  metricbeat
+  metricbeat:
     container_name: metricbeat
     image: docker.elastic.co/beats/metricbeat:8.7.0
     restart: unless-stopped
